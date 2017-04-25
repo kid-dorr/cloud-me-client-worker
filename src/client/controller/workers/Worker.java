@@ -24,10 +24,10 @@ public class Worker {
 	
 	public static final String ORIGIN = "http://cloud-mailpass-empire.appspot.com";
 	//public static final String ORIGIN = "http://1-dot-cloud-mailpass-empire.appspot.com";
-	public static final String ORIGIN1 = "http://localhost:8888";
-	public static final String PING_URL = "/workers/connect";
-	public static final String NEXT_MAIL = "/mails/next";
-	public static final String NEW_RESULT = "/results/new";
+	//public static final String ORIGIN = "http://localhost:8888";
+	public static final String PING_URL = "/w/api/v1/workers/connect";
+	public static final String NEXT_MAIL = "/w/api/v1/mails/next";
+	public static final String NEW_RESULT = "/w/api/v1/results/new";
 	
 	public static int count = 1;
 	
