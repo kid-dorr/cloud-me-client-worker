@@ -39,15 +39,12 @@ public class Worker {
 			jsReader = new JsonReader(new FileReader("manifest.json"));
 			Manifest ma = gs.fromJson(jsReader, Manifest.class);
 			
-			System.out.println(gs.toJson(ma));
-			
 			// ping to cloud
 			Connection con = Jsoup.connect(ORIGIN + PING_URL)
 								.data("secret", ma.secret)
 								.data("id", ma.id)
 								.method(Method.POST);
 			Response resp = con.execute();
-			System.out.println("resp: "+resp.body());
 			RespData rd = gs.fromJson(resp.body(), RespData.class);
 			
 			switch (rd.status) {
@@ -87,9 +84,7 @@ public class Worker {
 							.method(Method.GET);
 		try {
 			Response resp = con.execute();
-			System.out.println(resp.body());
 			RespMailData rmd = gs.fromJson(resp.body(), RespMailData.class);
-			System.out.println(rmd.status);
 			if (rmd.status == 1) {
 				return rmd;
 			} else {

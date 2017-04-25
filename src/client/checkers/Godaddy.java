@@ -1,8 +1,6 @@
 package client.checkers;
 
-import java.util.List;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,7 +30,6 @@ public class Godaddy {
 		String strMail = mailpass.mail.split("@")[0];
 		
 		String strPass = mailpass.pass;
-		System.out.println(strMail + "|" + strPass);
 		Connection con = Jsoup.connect(GODADDY_LOGIN_URL)
 								.header("User-Agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36")
 								.data("app", "www")
@@ -51,7 +48,6 @@ public class Godaddy {
 			
 			// tim thay userId
 			if (userMat.find()) {
-				System.out.println("Find a user login");
 				
 				// wait 5 seconds to check user dashboard
 				Thread.sleep(5000);
@@ -77,8 +73,9 @@ public class Godaddy {
 				}
 				
 				StringBuilder sb = new StringBuilder(data);
-				sb.deleteCharAt(sb.length()-1);
-				System.out.println(sb.toString());
+				if (sb.length()>0) {
+					sb.deleteCharAt(sb.length()-1);
+				}
 				// wait 5 seconds to logout
 				Thread.sleep(5000);
 				Jsoup.connect(GODADDY_LOGOUT_URL).get();
